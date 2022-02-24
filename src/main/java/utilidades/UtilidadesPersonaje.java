@@ -2,7 +2,6 @@ package utilidades;
 import modelos.Personaje;
 import modelos.Region;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,12 +9,13 @@ import java.util.stream.Collectors;
 
 public class UtilidadesPersonaje {
 
-    public Personaje levelUp(Personaje personaje){
+    public Integer levelUp(Personaje personaje){
 
-        personaje.setDefensaBase(personaje.getDefensaBase() + personaje.getEscabilidad().getIncrementoDefensaNivel() * personaje.getNivel() + 1 );
-        personaje.setAtaqueBase(personaje.getAtaqueBase() + personaje.getEscabilidad().getIncrementoDayoNivel() * personaje.getNivel() + 1 );
-        personaje.setManaBase(personaje.getManaBase() + personaje.getEscabilidad().getIncrementoManaNivel() * personaje.getNivel() + 1 );
-        personaje.setVidaBase(personaje.getVidaBase() + personaje.getEscabilidad().getIncrementoSaludNivel() * personaje.getNivel() + 1);
+        personaje.setNivel(personaje.getNivel()+ 1);
+        personaje.setDefensa(personaje.getDefensaBase() + personaje.getEscabilidad().getIncrementoDefensaNivel() * personaje.getNivel() );
+        personaje.setAtaque(personaje.getAtaqueBase() + personaje.getEscabilidad().getIncrementoDayoNivel() * personaje.getNivel() );
+        personaje.setMana(personaje.getManaBase() + personaje.getEscabilidad().getIncrementoManaNivel() * personaje.getNivel() );
+        personaje.setVida(personaje.getVidaBase() + personaje.getEscabilidad().getIncrementoSaludNivel() * personaje.getNivel());
 
         return personaje;
     }
@@ -27,18 +27,47 @@ public class UtilidadesPersonaje {
         return personajeRegion;
     }
 
+
     public Personaje getMasPoderoso(List<Personaje> personaje){
 
         Personaje personaje_poderoso = null;
-
-        personaje_poderoso.setNivel(17) += levelUp() ;
+        double media_mas_poderoso = 0.0;
 
         for (Personaje per : personaje){
-            personaje_poderoso.
+            while (per.getNivel() <= 18){
+                per.setNivel(levelUp(per));
+            }
+            if (per.getNivel() > 18){
+                per.setNivel(1);
+                per.setDefensa(per.getDefensaBase());
+                per.setVida(per.getVidaBase());
+                per.setMana(per.getManaBase());
+                per.setAtaque(per.getAtaqueBase());
+            }
+            while (per.getNivel() != 18){
+                per.setNivel(levelUp(per));
+            }
+        }
+
+        for (Personaje p : personaje){
+            double media = p.getAtaque() + p.getVida() + p.getMana() + p.getDefensa();
+            if (media > media_mas_poderoso){
+                media = media_mas_poderoso;
+                personaje_poderoso = p;
+            }
         }
 
         return personaje_poderoso;
-
     }
+
+    public Map<Region, List<Personaje>>getMasPoderosoPorRegion(List<Personaje> personajes){
+
+        Map<Region, List<Personaje>> mas_fuerte_region = new HashMap<>();
+
+        for (Personaje p : Region.values()){
+
+        }
+    }
+
 
 }
