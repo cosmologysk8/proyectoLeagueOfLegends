@@ -1,6 +1,7 @@
 package modelos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class Personaje {
     private Double vida;
     private Double mana;
     private Region region;
-    private List<Habilidad> habilidades;
+    private List<Habilidad> habilidades = new ArrayList<>();
     private List<Item> equipamiento;
     private Escalabilidad escabilidad;
 
@@ -43,6 +44,7 @@ public class Personaje {
     }
 
     public Personaje() {
+        this.habilidades = new ArrayList<>();
     }
 
     public Personaje (Personaje p) {
