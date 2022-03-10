@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class UtilidadesPersonaje {
 
-    public Personaje levelUp(Personaje personaje) {
+    public static Personaje levelUp(Personaje personaje) {
 
         personaje.setNivel(personaje.getNivel() + 1);
         personaje.setDefensa(personaje.getDefensaBase() + personaje.getEscabilidad().getIncrementoDefensaNivel() * personaje.getNivel());
@@ -59,10 +59,12 @@ public class UtilidadesPersonaje {
                 }
             }
 
-            return personaje_poderoso;
-        }
 
-        public Map<Region, Personaje> getMasPoderosoPorRegion (List < Personaje > personajes) {
+        }
+        return personaje_poderoso;
+    }
+
+        public Map<Region, Personaje> getMasPoderosoPorRegion(List<Personaje> personajes) {
 
             Map<Region, Personaje> mas_fuerte_region = new HashMap<>();
             Map<Region, List<Personaje>> personajeregion = getPersonajesPorRegion(personajes);
@@ -78,9 +80,28 @@ public class UtilidadesPersonaje {
             }
 
             return mas_fuerte_region;
+
+
+    }
+
+    public static Personaje Nivel18 (Personaje p){
+
+        if (p.getNivel() < 18) {
+            while (p.getNivel() != 18) {
+                p = levelUp(p);
+            }
+            if (p.getNivel() > 18) {
+                p.setNivel(1);
+                p.setDefensa(p.getDefensaBase());
+                p.setVida(p.getVidaBase());
+                p.setMana(p.getManaBase());
+                p.setAtaque(p.getAtaqueBase());
+            }
+            while (p.getNivel() != 18) {
+                p = levelUp(p);
+            }
         }
-
-
+        return p;
     }
 }
 
