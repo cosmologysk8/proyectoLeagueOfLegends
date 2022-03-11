@@ -32,12 +32,10 @@ public class UtilidadesHabilidad {
         }
 
         /* Ejercicio 3 **/
-
         Double dayo_total = habilidadEmisor.getDayoBase() + (0.2 * emisor.getAtaque()) - (0.1 * receptor.getDefensa());
 
-        emisor.setMana();
-        receptor.
-
+        emisor.setMana(emisor.getMana() - habilidadEmisor.getCosteMana()) ;
+        receptor.setVida(receptor.getVida() - dayo_total);
     }
 
 }

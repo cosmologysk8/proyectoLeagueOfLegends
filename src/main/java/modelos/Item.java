@@ -30,6 +30,8 @@ public class Item {
         this.aumentoMana = i.getAumentoMana();
     }
 
+
+
     public Item() {
     }
 
