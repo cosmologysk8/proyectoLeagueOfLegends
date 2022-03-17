@@ -59,7 +59,7 @@ public class UtilidadesFichero {
         reader.close();
         return personajes;
     }
-    public List<Personaje> leerYAprenderHabilidades() throws IOException {
+    public static List<Personaje> leerYAprenderHabilidades() throws IOException {
 
         CSVReader reader = null;
 
@@ -100,7 +100,7 @@ public class UtilidadesFichero {
 
     }
 
-    public List<Item> leerItems() throws IOException {
+    public static List<Item> leerItems() throws IOException {
 
         List<Item> item = new ArrayList<>();
 

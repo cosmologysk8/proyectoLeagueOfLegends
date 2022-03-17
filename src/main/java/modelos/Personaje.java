@@ -9,6 +9,7 @@ public class Personaje {
 
     private int id;
     private String nombre;
+    private String descripcion;
     private LocalDate fechaCreacion;
     private Integer nivel;
     private Double vidaBase;
@@ -24,10 +25,11 @@ public class Personaje {
     private List<Item> equipamiento;
     private Escalabilidad escabilidad;
 
-    public Personaje(int id, String nombre, LocalDate fechaCreacion, Integer nivel, Double vidaBase, Double manaBase, Double defensaBase, Double defensa, Double ataqueBase, Double ataque, Double vida, Double mana, Region region, List<Habilidad> habilidades, List<Item> equipamiento, Escalabilidad escabilidad) {
+    public Personaje(int id, String nombre, LocalDate fechaCreacion, String descripcion, Integer nivel, Double vida, Double ataque, Double mana, Double defensa, Double vidaBase, Double ataqueBase, Double manaBase, Double defensaBase, Region region, List<Habilidad> habilidades, List<Item> equipamiento, Escalabilidad escabilidad) {
         this.id = id;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
+        this.descripcion = descripcion;
         this.nivel = nivel;
         this.vidaBase = vidaBase;
         this.manaBase = manaBase;

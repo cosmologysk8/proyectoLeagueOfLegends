@@ -12,7 +12,7 @@ public class Habilidad {
     private Double costeMana;
     private TipoHabilidad tipohabilidad;
 
-    public Habilidad(int id, String nombre, Double DayoBase, Double Dayo, Double mana, Double costeMana, TipoHabilidad tipohabilidad) {
+    public Habilidad(int id, String nombre, Double DayoBase, Double Dayo, Double costeMana, TipoHabilidad tipohabilidad) {
         this.id = id;
         this.nombre = nombre;
         this.DayoBase = DayoBase;

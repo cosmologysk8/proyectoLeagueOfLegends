@@ -21,7 +21,7 @@ public class UtilidadesPersonaje {
         return personaje;
     }
 
-    public Map<Region, List<Personaje>> getPersonajesPorRegion(List<Personaje> personajes) {
+    public static Map<Region, List<Personaje>> getPersonajesPorRegion(List<Personaje> personajes) {
 
         Map<Region, List<Personaje>> personajeRegion = personajes.stream().collect(Collectors.groupingBy(p -> p.getRegion()));
 
@@ -29,8 +29,8 @@ public class UtilidadesPersonaje {
     }
 
 
-    public Personaje getMasPoderoso(List<Personaje> personaje) {
-
+    public static Personaje getMasPoderoso(List<Personaje> personaje) {
+        List<Personaje> pe = new ArrayList<>();
         Personaje personaje_poderoso = null;
         double media_mas_poderoso = 0.0;
 
@@ -46,25 +46,26 @@ public class UtilidadesPersonaje {
                     per.setMana(per.getManaBase());
                     per.setAtaque(per.getAtaqueBase());
                 }
-                while (per.getNivel() != 18) {
-                    per = levelUp(per);
+                if(per.getNivel() == 18){
+                    pe.add(per);
+                    double media = p.getAtaque() + p.getVida() + p.getMana() + p.getDefensa();i
+                    if (media > media_mas_poderoso) {
+                        media = media_mas_poderoso;
+                        personaje_poderoso = p;
+                    }
                 }
+
             }
 
-            for (Personaje p : personaje) {
-                double media = p.getAtaque() + p.getVida() + p.getMana() + p.getDefensa();
-                if (media > media_mas_poderoso) {
-                    media = media_mas_poderoso;
-                    personaje_poderoso = p;
-                }
+            for (Personaje p : pe) {
+
+
             }
-
-
         }
         return personaje_poderoso;
     }
 
-        public Map<Region, Personaje> getMasPoderosoPorRegion(List<Personaje> personajes) {
+        public static Map<Region, Personaje> getMasPoderosoPorRegion(List<Personaje> personajes) {
 
             Map<Region, Personaje> mas_fuerte_region = new HashMap<>();
             Map<Region, List<Personaje>> personajeregion = getPersonajesPorRegion(personajes);
@@ -80,8 +81,6 @@ public class UtilidadesPersonaje {
             }
 
             return mas_fuerte_region;
-
-
     }
 
     public static Personaje Nivel18 (Personaje p){

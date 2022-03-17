@@ -9,14 +9,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class UtilidadesPartida implements IUtilidadesPartida{
+public class UtilidadesPartida {
 
-    @Override
-    public void inicializarPartida(Partida partida, List<Jugador> participantes, List<Personaje> personajesDisponibles) {
+
+    public static void inicializarPartida(Partida partida, List<Jugador> participantes, List<Personaje> personajesDisponibles) {
 
        for (Jugador j: participantes){
             for(Personaje p : personajesDisponibles){
@@ -53,8 +51,8 @@ public class UtilidadesPartida implements IUtilidadesPartida{
         partida.setInicioPartida(inicio);
     }
 
-    @Override
-    public void finalizarPartida(Partida partida, Integer equipoVencedor) {
+
+    public static void finalizarPartida(Partida partida, Integer equipoVencedor) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime fin = LocalDateTime.parse(dtf.format(LocalDateTime.now()));
@@ -70,6 +68,22 @@ public class UtilidadesPartida implements IUtilidadesPartida{
         partida.setEquipoVencedor(equipoVencedor);
 
 
+        Set<Jugador> vencedor = new HashSet<>();
 
+        for (Map.Entry<Integer, Set<Jugador>> entry : partida.getJugadoresPorEquipo().entrySet()) {
+            if (entry.getKey() == equipoVencedor) {
+                vencedor = entry.getValue();
+            }
+        }
+        List<Jugador> listaJ = new ArrayList<>(vencedor);
+
+        for (Jugador j : vencedor) {
+            Personaje personaje = partida.getElecciones().get(j);
+            if (j.getPartidasGanadas().containsKey(personaje)) {
+                j.getPartidasGanadas().put(personaje, j.getPartidasGanadas().get(personaje) + 1);
+            } else {
+                j.getPartidasGanadas().put(personaje, 1);
+            }
+        }
     }
 }

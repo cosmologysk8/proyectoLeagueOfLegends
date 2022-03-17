@@ -5,7 +5,7 @@ import modelos.Personaje;
 
 public class UtilidadesItem {
 
-    public void equiparItem(Personaje personaje, Item item){
+    public static void equiparItem(Personaje personaje, Item item){
 
         personaje.getEquipamiento().add(item);
 

@@ -6,7 +6,7 @@ import modelos.Personaje;
 
 public class UtilidadesHabilidad {
 
-    public void golpearConHabilidad(Personaje emisor, Personaje receptor, Habilidad habilidadEmisor){
+    public static void golpearConHabilidad(Personaje emisor, Personaje receptor, Habilidad habilidadEmisor){
 
         /* Ejercicio 1 **/
         utilidades.UtilidadesPersonaje.Nivel18(emisor);
